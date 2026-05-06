@@ -12,11 +12,11 @@ class Classmate:
 
 # PRE-LOADED CLASSMATES
 classmates = [
-    Classmate("Joe", "Emerald", "Math"),
-    Classmate("Erin", "Emerald", "Science"),
+    Classmate("Joe", "Emerald", "English"),
+    Classmate("Erin", "Emerald", "VE"),
     Classmate("Caitlyn", "Emerald", "English"),
     Classmate("Kyla", "Emerald", "Filipino"),
-    Classmate("Oscar", "Emerald", "History"),
+    Classmate("Oscar", "Emerald", "MEN"),
     Classmate("Clarrise", "Emerald", "Math"),
     Classmate("Thomas", "Emerald", "Science"),
     Classmate("Ivan", "Emerald", "English"),
