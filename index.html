@@ -28,7 +28,6 @@
             flex-direction: column;
         }
 
-        /* NAVBAR */
         .navbar {
             background: linear-gradient(90deg, #1e3a8a 0%, #1e40af 100%);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -84,12 +83,10 @@
             color: white;
         }
 
-        /* MAIN CONTENT */
         main {
             flex: 1;
         }
 
-        /* SECTIONS */
         .section {
             padding: 3rem 1.25rem;
         }
@@ -125,7 +122,6 @@
             font-size: 1.3rem;
         }
 
-        /* PHOTOS */
         .photo-row {
             display: flex;
             flex-wrap: wrap;
@@ -159,7 +155,6 @@
             font-weight: 500;
         }
 
-        /* INPUTS & BUTTONS */
         input, select {
             width: 100%;
             padding: 0.75rem;
@@ -210,7 +205,6 @@
             border-left: 4px solid #0ea5e9;
         }
 
-        /* FOOTER */
         footer {
             background: linear-gradient(90deg, #1e3a8a 0%, #1e40af 100%);
             color: white;
@@ -230,7 +224,6 @@
             font-weight: 700;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             .nav-container {
                 padding: 0.75rem 1rem;
@@ -266,7 +259,6 @@
 
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="nav-title">
@@ -282,7 +274,6 @@
 
 <main>
 
-<!-- PHOTOS -->
 <div class="section" id="memories">
     <div class="container">
         <h1>Memories</h1>
@@ -304,7 +295,6 @@
     </div>
 </div>
 
-<!-- CLASSMATES -->
 <div class="section" id="classmates">
     <div class="container">
         <h2>Classmates</h2>
@@ -320,7 +310,6 @@
     </div>
 </div>
 
-<!-- ATTENDANCE -->
 <div class="section" id="attendance">
     <div class="container">
         <h2>Attendance Tracker</h2>
@@ -341,13 +330,11 @@
     </div>
 </div>
 
-<!-- PYTHON -->
 <py-script src="classmates.py"></py-script>
 <py-script src="attendance.py"></py-script>
 
 </main>
 
-<!-- FOOTER -->
 <footer>
     <p>Special mention: <span class="footer-highlight">Gurnoor & Gino</span></p>
     <p>Grade 10 Emerald Class Website</p>
@@ -359,7 +346,6 @@
         const section = document.getElementById(sectionId);
         section.scrollIntoView({ behavior: 'smooth' });
         
-        // Update active link
         document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
         event.target.classList.add('active');
     }
