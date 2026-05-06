@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import logging
 import numpy as np
 import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings("ignore", message="Matplotlib is building the font cache")
 
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 attendance = np.array([0, 0, 0, 0, 0])
