@@ -24,6 +24,8 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e40af 100%);
             color: #333;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* NAVBAR */
@@ -80,6 +82,11 @@
         .nav-links a.active {
             background: #0ea5e9;
             color: white;
+        }
+
+        /* MAIN CONTENT */
+        main {
+            flex: 1;
         }
 
         /* SECTIONS */
@@ -203,6 +210,26 @@
             border-left: 4px solid #0ea5e9;
         }
 
+        /* FOOTER */
+        footer {
+            background: linear-gradient(90deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 3px solid #0ea5e9;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        footer .footer-highlight {
+            color: #0ea5e9;
+            font-weight: 700;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .nav-container {
@@ -253,16 +280,12 @@
     </div>
 </nav>
 
+<main>
+
 <!-- PHOTOS -->
 <div class="section" id="memories">
     <div class="container">
         <h1>Memories</h1>
-
-        <h3>Gurnoor & Gino</h3>
-        <div class="photo-row">
-            <div class="photo-card"><img src="IMG_6607.JPG" alt="Best duo"><p>Best duo</p></div>
-            <div class="photo-card"><img src="IMG_6608.JPG" alt="Another moment"><p>Another moment</p></div>
-        </div>
 
         <h3>Zest Fest</h3>
         <div class="photo-row">
@@ -271,10 +294,12 @@
             <div class="photo-card"><img src="IMG_6619.JPG" alt="Class energy"><p>Class energy</p></div>
         </div>
 
-        <h3>More Memories</h3>
+        <h3>Class Moments</h3>
         <div class="photo-row">
             <div class="photo-card"><img src="IMG_6611.JPG" alt="Random moment"><p>Random moment</p></div>
             <div class="photo-card"><img src="WIN_20251126_12_40_39_Pro.jpg" alt="Class vibes"><p>Class vibes</p></div>
+            <div class="photo-card"><img src="IMG_6607.JPG" alt="Best moments"><p>Best moments</p></div>
+            <div class="photo-card"><img src="IMG_6608.JPG" alt="Another moment"><p>Another moment</p></div>
         </div>
     </div>
 </div>
@@ -319,6 +344,14 @@
 <!-- PYTHON -->
 <py-script src="classmates.py"></py-script>
 <py-script src="attendance.py"></py-script>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <p>Special mention: <span class="footer-highlight">Gurnoor & Gino</span></p>
+    <p>Grade 10 Emerald Class Website</p>
+</footer>
 
 <script>
     function scrollToSection(event, sectionId) {
