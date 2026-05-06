@@ -29,7 +29,6 @@
         /* NAVBAR */
         .navbar {
             background: linear-gradient(90deg, #1e3a8a 0%, #1e40af 100%);
-            padding: 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
@@ -56,6 +55,31 @@
         .nav-accent {
             color: #0ea5e9;
             font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(14, 165, 233, 0.2);
+            color: #0ea5e9;
+        }
+
+        .nav-links a.active {
+            background: #0ea5e9;
+            color: white;
         }
 
         /* SECTIONS */
@@ -183,10 +207,18 @@
         @media (max-width: 768px) {
             .nav-container {
                 padding: 0.75rem 1rem;
+                flex-direction: column;
+                gap: 1rem;
             }
 
             .nav-title {
                 font-size: 1.2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             h1, h2 {
@@ -208,18 +240,23 @@
 <body>
 
 <!-- NAVBAR -->
-<div class="navbar">
+<nav class="navbar">
     <div class="nav-container">
         <div class="nav-title">
             Grade 10 <span class="nav-accent">Emerald</span>
         </div>
+        <ul class="nav-links">
+            <li><a href="#memories" class="nav-link" onclick="scrollToSection(event, 'memories')">Memories</a></li>
+            <li><a href="#classmates" class="nav-link" onclick="scrollToSection(event, 'classmates')">Classmates</a></li>
+            <li><a href="#attendance" class="nav-link" onclick="scrollToSection(event, 'attendance')">Attendance</a></li>
+        </ul>
     </div>
-</div>
+</nav>
 
 <!-- PHOTOS -->
-<div class="section">
+<div class="section" id="memories">
     <div class="container">
-        <h1>📸 Memories</h1>
+        <h1>Memories</h1>
 
         <h3>Gurnoor & Gino</h3>
         <div class="photo-row">
@@ -243,25 +280,25 @@
 </div>
 
 <!-- CLASSMATES -->
-<div class="section">
+<div class="section" id="classmates">
     <div class="container">
-        <h2>👥 Classmates</h2>
+        <h2>Classmates</h2>
 
         <input id="name_input" placeholder="Enter name" type="text">
         <input id="section_input" placeholder="Enter section" type="text">
         <input id="subject_input" placeholder="Favorite subject" type="text">
 
-        <button py-click="add_classmate">➕ Add Classmate</button>
-        <button py-click="show_list">📋 Show List</button>
+        <button py-click="add_classmate">Add Classmate</button>
+        <button py-click="show_list">Show List</button>
 
         <div id="output"></div>
     </div>
 </div>
 
 <!-- ATTENDANCE -->
-<div class="section">
+<div class="section" id="attendance">
     <div class="container">
-        <h2>📊 Attendance Tracker</h2>
+        <h2>Attendance Tracker</h2>
 
         <select id="day">
             <option value="">Select a day</option>
@@ -273,7 +310,7 @@
         </select>
 
         <input type="number" id="absentees" placeholder="Number of absentees" min="0">
-        <button py-click="update_graph">📈 Submit</button>
+        <button py-click="update_graph">Submit</button>
 
         <div id="graph"></div>
     </div>
@@ -282,6 +319,18 @@
 <!-- PYTHON -->
 <py-script src="classmates.py"></py-script>
 <py-script src="attendance.py"></py-script>
+
+<script>
+    function scrollToSection(event, sectionId) {
+        event.preventDefault();
+        const section = document.getElementById(sectionId);
+        section.scrollIntoView({ behavior: 'smooth' });
+        
+        // Update active link
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+</script>
 
 </body>
 </html>
