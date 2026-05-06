@@ -2,9 +2,8 @@ from pyscript import display
 import numpy as np
 import matplotlib.pyplot as plt
 import logging
-
-# cleaner console (removes matplotlib warnings)
-logging.getLogger("matplotlib").setLevel(logging.ERROR)
+import numpy as np
+import matplotlib.pyplot as plt
 
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 attendance = np.array([0, 0, 0, 0, 0])
