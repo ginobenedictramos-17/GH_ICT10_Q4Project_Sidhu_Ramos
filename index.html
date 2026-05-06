@@ -20,62 +20,39 @@
 
         /* NAVBAR */
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.2);
-            padding: 15px 25px;
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-title {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            text-align: center;
             font-size: 22px;
             font-weight: bold;
-        }
-
-        .nav-links button {
-            margin-left: 10px;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 20px;
-            background: transparent;
-            color: white;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .nav-links button:hover,
-        .active-btn {
-            background: white;
-            color: #145C9E;
+            position: sticky;
+            top: 0;
         }
 
         /* SECTIONS */
         .section {
-            display: none;
-            padding: 30px;
+            padding: 40px 20px;
         }
 
-        .active {
-            display: block;
-        }
-
-        /* CARD */
         .container {
+            max-width: 900px;
+            margin: auto;
             background: white;
             color: black;
             padding: 25px;
             border-radius: 15px;
-            max-width: 900px;
-            margin: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h1, h2 {
+            text-align: center;
         }
 
         /* PHOTOS */
         .photo-row {
             display: flex;
-            gap: 15px;
             flex-wrap: wrap;
+            gap: 15px;
             justify-content: center;
         }
 
@@ -90,19 +67,20 @@
         }
 
         .photo-card img:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         /* INPUTS */
         input, select {
             width: 100%;
-            margin: 8px 0;
             padding: 10px;
+            margin: 8px 0;
             border-radius: 8px;
             border: 1px solid #ccc;
         }
 
         button {
+            width: 100%;
             padding: 10px;
             margin-top: 5px;
             border: none;
@@ -110,7 +88,6 @@
             background: #1976d2;
             color: white;
             cursor: pointer;
-            transition: 0.3s;
         }
 
         button:hover {
@@ -128,31 +105,19 @@
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
-    <div class="nav-title">Grade 10 Emerald</div>
-    <div class="nav-links">
-        <button class="active-btn" onclick="showSection('photos', this)">Photos</button>
-        <button onclick="showSection('classmates', this)">Classmates</button>
-        <button onclick="showSection('attendance', this)">Attendance</button>
-    </div>
+    Grade 10 Emerald – Class Website
 </div>
 
 <!-- PHOTOS -->
-<div id="photos" class="section active">
+<div class="section">
     <div class="container">
         <h1>📸 Memories</h1>
 
         <h3>Gurnoor & Gino</h3>
         <div class="photo-row">
-            <div class="photo-card">
-                <img src="images/IMG_6607.JPG">
-                <p>Best duo 😎</p>
-            </div>
-            <div class="photo-card">
-                <img src="images/IMG_6608.JPG">
-                <p>Another moment</p>
-            </div>
+            <div class="photo-card"><img src="images/IMG_6607.JPG"><p>Best duo</p></div>
+            <div class="photo-card"><img src="images/IMG_6608.JPG"><p>Another moment</p></div>
         </div>
 
         <h3>Zest Fest</h3>
@@ -171,7 +136,7 @@
 </div>
 
 <!-- CLASSMATES -->
-<div id="classmates" class="section">
+<div class="section">
     <div class="container">
         <h2>👥 Classmates</h2>
 
@@ -179,7 +144,7 @@
         <input id="section_input" placeholder="Section">
         <input id="subject_input" placeholder="Favorite Subject">
 
-        <button py-click="add_classmate">Add</button>
+        <button py-click="add_classmate">Add Classmate</button>
         <button py-click="show_list">Show List</button>
 
         <div id="output"></div>
@@ -187,7 +152,7 @@
 </div>
 
 <!-- ATTENDANCE -->
-<div id="attendance" class="section">
+<div class="section">
     <div class="container">
         <h2>📊 Attendance Tracker</h2>
 
@@ -209,17 +174,6 @@
 <!-- PYTHON -->
 <py-script src="classmates.py"></py-script>
 <py-script src="attendance.py"></py-script>
-
-<!-- NAV SCRIPT -->
-<script>
-function showSection(id, btn) {
-    document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
-    document.querySelectorAll(".nav-links button").forEach(b => b.classList.remove("active-btn"));
-
-    document.getElementById(id).classList.add("active");
-    btn.classList.add("active-btn");
-}
-</script>
 
 </body>
 </html>
