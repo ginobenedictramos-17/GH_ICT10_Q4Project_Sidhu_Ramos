@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grade 10 Emerald</title>
 
     <link rel="stylesheet" href="https://pyscript.net/releases/2025.7.3/core.css">
@@ -11,102 +13,207 @@
     </py-config>
 
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #145C9E, #1e3a8a);
-            color: white;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e40af 100%);
+            color: #333;
+            min-height: 100vh;
         }
 
         /* NAVBAR */
         .navbar {
-            background: rgba(0,0,0,0.3);
-            padding: 15px;
-            text-align: center;
-            font-size: 22px;
-            font-weight: bold;
+            background: linear-gradient(90deg, #1e3a8a 0%, #1e40af 100%);
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #0ea5e9;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-accent {
+            color: #0ea5e9;
+            font-weight: 800;
         }
 
         /* SECTIONS */
         .section {
-            padding: 40px 20px;
+            padding: 3rem 1.25rem;
         }
 
         .container {
             max-width: 900px;
-            margin: auto;
+            margin: 0 auto;
             background: white;
-            color: black;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            color: #1f2937;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
         }
 
         h1, h2 {
             text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1e3a8a;
+            font-size: 2rem;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #1e40af;
+            font-size: 1.3rem;
         }
 
         /* PHOTOS */
         .photo-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 1.5rem;
             justify-content: center;
+            margin-bottom: 2rem;
         }
 
         .photo-card {
             text-align: center;
+            transition: all 0.3s ease;
         }
 
         .photo-card img {
             width: 220px;
+            height: 220px;
+            object-fit: cover;
             border-radius: 12px;
-            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
         .photo-card img:hover {
-            transform: scale(1.08);
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 12px 25px rgba(30, 58, 138, 0.3);
         }
 
-        /* INPUTS */
+        .photo-card p {
+            margin-top: 0.75rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* INPUTS & BUTTONS */
         input, select {
             width: 100%;
-            padding: 10px;
-            margin: 8px 0;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
             border-radius: 8px;
-            border: 1px solid #ccc;
+            border: 2px solid #e5e7eb;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
         }
 
         button {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
             border: none;
             border-radius: 8px;
-            background: #1976d2;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
             color: white;
             cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
         }
 
         button:hover {
-            background: #145ca1;
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
         }
 
         #output, #graph {
-            margin-top: 15px;
-            padding: 10px;
+            margin-top: 1.5rem;
+            padding: 1rem;
             border-radius: 8px;
-            background: #f1f5f9;
+            background: #f8fafc;
+            border-left: 4px solid #0ea5e9;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-title {
+                font-size: 1.2rem;
+            }
+
+            h1, h2 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .photo-card img {
+                width: 180px;
+                height: 180px;
+            }
         }
     </style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 <div class="navbar">
-    Grade 10 Emerald – Class Website
+    <div class="nav-container">
+        <div class="nav-title">
+            Grade 10 <span class="nav-accent">Emerald</span>
+        </div>
+    </div>
 </div>
 
 <!-- PHOTOS -->
@@ -116,21 +223,21 @@
 
         <h3>Gurnoor & Gino</h3>
         <div class="photo-row">
-            <div class="photo-card"><img src="images/IMG_6607.JPG"><p>Best duo</p></div>
-            <div class="photo-card"><img src="images/IMG_6608.JPG"><p>Another moment</p></div>
+            <div class="photo-card"><img src="IMG_6607.JPG" alt="Best duo"><p>Best duo</p></div>
+            <div class="photo-card"><img src="IMG_6608.JPG" alt="Another moment"><p>Another moment</p></div>
         </div>
 
         <h3>Zest Fest</h3>
         <div class="photo-row">
-            <div class="photo-card"><img src="images/IMG_6570.JPG"><p>Event day</p></div>
-            <div class="photo-card"><img src="images/IMG_6636.JPG"><p>Fun times</p></div>
-            <div class="photo-card"><img src="images/IMG_6619.JPG"><p>Class energy</p></div>
+            <div class="photo-card"><img src="IMG_6570.JPG" alt="Event day"><p>Event day</p></div>
+            <div class="photo-card"><img src="IMG_6636.JPG" alt="Fun times"><p>Fun times</p></div>
+            <div class="photo-card"><img src="IMG_6619.JPG" alt="Class energy"><p>Class energy</p></div>
         </div>
 
         <h3>More Memories</h3>
         <div class="photo-row">
-            <div class="photo-card"><img src="images/IMG_6611.JPG"><p>Random moment</p></div>
-            <div class="photo-card"><img src="images/WIN_20251126_12_40_39_Pro.jpg"><p>Class vibes</p></div>
+            <div class="photo-card"><img src="IMG_6611.JPG" alt="Random moment"><p>Random moment</p></div>
+            <div class="photo-card"><img src="WIN_20251126_12_40_39_Pro.jpg" alt="Class vibes"><p>Class vibes</p></div>
         </div>
     </div>
 </div>
@@ -140,12 +247,12 @@
     <div class="container">
         <h2>👥 Classmates</h2>
 
-        <input id="name_input" placeholder="Name">
-        <input id="section_input" placeholder="Section">
-        <input id="subject_input" placeholder="Favorite Subject">
+        <input id="name_input" placeholder="Enter name" type="text">
+        <input id="section_input" placeholder="Enter section" type="text">
+        <input id="subject_input" placeholder="Favorite subject" type="text">
 
-        <button py-click="add_classmate">Add Classmate</button>
-        <button py-click="show_list">Show List</button>
+        <button py-click="add_classmate">➕ Add Classmate</button>
+        <button py-click="show_list">📋 Show List</button>
 
         <div id="output"></div>
     </div>
@@ -157,6 +264,7 @@
         <h2>📊 Attendance Tracker</h2>
 
         <select id="day">
+            <option value="">Select a day</option>
             <option>Monday</option>
             <option>Tuesday</option>
             <option>Wednesday</option>
@@ -164,8 +272,8 @@
             <option>Friday</option>
         </select>
 
-        <input type="number" id="absentees" placeholder="Absentees">
-        <button py-click="update_graph">Submit</button>
+        <input type="number" id="absentees" placeholder="Number of absentees" min="0">
+        <button py-click="update_graph">📈 Submit</button>
 
         <div id="graph"></div>
     </div>
