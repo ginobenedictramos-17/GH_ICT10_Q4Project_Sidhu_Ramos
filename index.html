@@ -1,73 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memories</title>
+    <title>Grade 10 Emerald</title>
+
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.7.3/core.css">
+    <script type="module" src="https://pyscript.net/releases/2025.7.3/core.js"></script>
+
+    <py-config>
+        packages = ["numpy", "matplotlib"]
+    </py-config>
+
     <style>
         body {
+            margin: 0;
+            font-family: Arial;
             background: #145C9E;
-            font-family: Arial, sans-serif;
-            text-align: center;
+            color: white;
         }
-        ul {
-    list-style-type: none;
-    background-color: #758173;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    color: #FFFFEA;
-    font-size: 36px;
-    text-align: center;
-    width: 100%;
-}
 
-    ul, li {
-    float: left; 
-}
-     a {
-    color: inherit;
-}
-    .photo-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-     padding: 18px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px #b3c6e055;
-    }
-    .photo-container1 img {
-    width: 187px;
-    height: auto;
-     border-radius: 10px;
-    }
-    
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background: #758173;
+            padding: 15px;
+        }
+
+        .nav-links button {
+            margin-left: 15px;
+            padding: 8px 15px;
+            border: none;
+            background: #1976d2;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* SECTIONS */
+        .section {
+            display: none;
+            padding: 20px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .container {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .photo-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .photo-row img {
+            width: 200px;
+            border-radius: 10px;
+        }
     </style>
 </head>
+
 <body>
-    <ul>
-        <li>Grade 10-Emerald: The Website</li>
-        <li><a href="#" target="_blank">Attendance</a></li>
-        <li><a href="https://gur7.github.io/GH_ICT10_Q4Seatwork2_Sidhu_Gurnoor/" target="_blank">Get to Know Us!!!</a></li>
-    </ul>
 
-    <h1>Memories: The Emerald Photo Compilation</h1>
-
-    <h2>Gurnoor and Gino</h2>
-    <div class="photo-container1">
-        <img src="https://raw.githubusercontent.com/ginobenedictramos-17/GH_ICT10_Q4Project_Sidhu_Ramos/refs/heads/main/IMG_6607.JPG">
-        <img src="https://raw.githubusercontent.com/ginobenedictramos-17/GH_ICT10_Q4Project_Sidhu_Ramos/refs/heads/main/IMG_6608.JPG">
-
+<!-- NAVBAR -->
+<div class="navbar">
+    <div><b>Grade 10 Emerald</b></div>
+    <div class="nav-links">
+        <button onclick="showSection('photos')">Photos</button>
+        <button onclick="showSection('classmates')">Classmates</button>
+        <button onclick="showSection('attendance')">Attendance</button>
     </div>
-<br>
-    <h2>Zest Fest</h2>
-    <div class="photo-container2">
-        <img src="https://raw.githubusercontent.com/ginobenedictramos-17/GH_ICT10_Q4Project_Sidhu_Ramos/refs/heads/main/IMG_6570.JPG" width="350px" height="250px">
-        <img src="https://raw.githubusercontent.com/ginobenedictramos-17/GH_ICT10_Q4Project_Sidhu_Ramos/refs/heads/main/IMG_6636.JPG" width="350px" height="250px">
-        <img src="https://raw.githubusercontent.com/ginobenedictramos-17/GH_ICT10_Q4Project_Sidhu_Ramos/refs/heads/main/IMG_6619.JPG" width="350px" height="250px">
+</div>
+
+<!-- PHOTOS -->
+<div id="photos" class="section active">
+    <div class="container">
+        <h1>Memories</h1>
+
+        <h2>Gurnoor and Gino</h2>
+        <div class="photo-row">
+            <img src="images/IMG_6607.JPG">
+            <img src="images/IMG_6608.JPG">
+        </div>
+
+        <h2>Zest Fest</h2>
+        <div class="photo-row">
+            <img src="images/IMG_6570.JPG">
+            <img src="images/IMG_6636.JPG">
+            <img src="images/IMG_6619.JPG">
+        </div>
+
+        <h2>More</h2>
+        <div class="photo-row">
+            <img src="images/IMG_6611.JPG">
+            <img src="images/WIN_20251126_12_40_39_Pro.jpg">
+        </div>
     </div>
-<br>
-    <h2>10-Emerald!!!</h2>    
+</div>
+
+<!-- CLASSMATES -->
+<div id="classmates" class="section">
+    <div class="container">
+        <h2>Classmates</h2>
+
+        <input id="name_input" placeholder="Name"><br>
+        <input id="section_input" placeholder="Section"><br>
+        <input id="subject_input" placeholder="Favorite Subject"><br>
+
+        <button py-click="add_classmate">Add</button>
+        <button py-click="show_list">Show</button>
+
+        <div id="output"></div>
+    </div>
+</div>
+
+<!-- ATTENDANCE -->
+<div id="attendance" class="section">
+    <div class="container">
+        <h2>Attendance</h2>
+
+        <select id="day">
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+        </select>
+
+        <input type="number" id="absentees">
+        <button py-click="update_graph">Submit</button>
+
+        <div id="graph"></div>
+    </div>
+</div>
+
+<!-- LOAD BOTH PY FILES -->
+<py-script src="classmates.py"></py-script>
+<py-script src="attendance.py"></py-script>
+
+<!-- JS FOR NAV -->
+<script>
+function showSection(id) {
+    document.querySelectorAll(".section").forEach(sec => {
+        sec.classList.remove("active");
+    });
+    document.getElementById(id).classList.add("active");
+}
+</script>
+
 </body>
 </html>
